@@ -1,8 +1,24 @@
-import React from "react"
+import React, { MutableRefObject, useRef, useState } from "react"
 import { Link } from "react-router-dom";
+import { AuthClient } from "../../api/authClient";
 
 export const AuthPage: React.FC<{type: string}> = ({ type }) => {
+    const [spinner, setSpinner] = useState(false);
+
+    // Refs for input fields
+    const usernameRef = useRef() as MutableRefObject<HTMLInputElement>;
+    const passwordRef = useRef() as MutableRefObject<HTMLInputElement>;
+
     const currentTitle = type === 'login' ? 'Войти' : 'Регистрация';
+
+    const handleLogin = async (username: string, password: string) => {
+      if (!username || !password) {
+        return;
+      } else {
+        const result = await AuthClient.login(username, password);
+      }
+    }
+
     return(
         <div className="container">
             <h3>{currentTitle}</h3>
