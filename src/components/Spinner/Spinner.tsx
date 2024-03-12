@@ -1,5 +1,5 @@
 import { ISpinnerProps } from "../../types";
-import './styles/css';
+import './styles.css';
 
 export const Spinner: React.FC<ISpinnerProps> = ({top, left}: ISpinnerProps) => {
     return (
