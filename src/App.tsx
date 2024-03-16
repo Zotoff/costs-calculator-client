@@ -6,6 +6,7 @@ import { useStore, useUnit } from 'effector-react';
 import { $auth } from './context/auth';
 import { $alert } from './context/alert';
 import { Alert } from './components/Alert/Alert';
+import { CostsPage } from './components/CostsPage';
 
 function App() {
 
@@ -21,7 +22,7 @@ function App() {
             <Route path='/' element={isLoggedIn ? <Navigate to={`/costs`} /> : <Navigate to={'/login'} />} />
             <Route path='/registration' element={isLoggedIn ? <Navigate to={`/costs`} /> : <AuthPage type='registration' />} />
             <Route path='/login' element={isLoggedIn ? <Navigate to={`/costs`} /> : <AuthPage type='login' />} />
-            <Route path='/costs' element={isLoggedIn ? <h1>Costs</h1> : <Navigate to={`/login`} />} />
+            <Route path='/costs' element={isLoggedIn ? <CostsPage /> : <Navigate to={`/login`} />} />
         </Routes>
       </Router>
     </div>
