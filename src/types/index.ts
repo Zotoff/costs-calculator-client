@@ -40,3 +40,8 @@ export interface IHandleAxiosErrorPayload {
     createCost?: Partial<ICreateCost>;
     getCosts?: Partial<IBaseEffectArgs>;
 }
+
+export interface ICostsItemProps {
+    cost: ICost,
+    index: number,
+}

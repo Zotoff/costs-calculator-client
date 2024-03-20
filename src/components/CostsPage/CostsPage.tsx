@@ -1,10 +1,11 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useMemo } from "react";
 import { Header } from "./Header/Header";
 import { Spinner } from "../Spinner/Spinner";
 import { getAuthDataFromLs } from "../../utils/auth";
 import { getCostsFx } from "../../api/costsClient";
 import { $costs, setCosts } from "../../context";
 import { useStore, useUnit } from "effector-react";
+import { CostsList } from "./CostsList";
 
 export const CostsPage: React.FC = () => {
 
@@ -35,9 +36,11 @@ export const CostsPage: React.FC = () => {
     return (
         <div className="container">
             <h2>Учет расходов</h2>
-            <Header costs={[]}/>
+            {useMemo(()=><Header costs={store}/>, [store])}
             <div style={{position: 'relative'}}>
                 {spinner && <Spinner top={0} left={0} />}
+                {useMemo(()=> <CostsList costs={store} />, [store])}
+                {(!spinner && !store.length) && <h2>Список расходов пуст</h2>}
             </div>
         </div>
     )
