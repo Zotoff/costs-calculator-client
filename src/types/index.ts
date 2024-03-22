@@ -39,9 +39,14 @@ export interface IHandleAxiosErrorPayload {
     type: string;
     createCost?: Partial<ICreateCost>;
     getCosts?: Partial<IBaseEffectArgs>;
+    deleteCost?: Partial<IDeleteCost>;
 }
 
 export interface ICostsItemProps {
     cost: ICost,
     index: number,
+}
+
+export interface IDeleteCost extends IBaseEffectArgs {
+    costId: string | number;
 }

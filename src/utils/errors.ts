@@ -1,7 +1,7 @@
 import { AxiosError } from "axios";
 import { IHandleAxiosErrorPayload } from "../types";
 import { getAuthDataFromLs, handleAlertMessage, removeUser } from "./auth";
-import { getCostsFx, refreshTokenFx } from "../api/costsClient";
+import { deleteCostFx, getCostsFx, refreshTokenFx } from "../api/costsClient";
 import { setCosts } from "../context";
 
 export const handleAxiosError = async (
@@ -31,6 +31,13 @@ export const handleAxiosError = async (
                             token: authData.access_token
                         });
                         setCosts(costs);
+                    break;
+                    case 'delete':
+                        await deleteCostFx({
+                            url: `./cost/`,
+                            token: authData.access_token,
+                            costId: payloadData.deleteCost?.costId as string
+                        });
                     break;
                     default:
                         break;
